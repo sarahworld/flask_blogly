@@ -7,19 +7,22 @@
 {% endblock %}
 
 {% block content%}
+<div class="container-fluid ">
+    <ul>
+        <h1 class="h1">USERS</h1>
+        {%for user in user_list%}
+        <li class="m-1 ">
+            <a class="text-decoration-none" href="/users/{{user.id}}">{{user.first_name}}</a>
+        </li>
+        
+        {% endfor %}
+        </ul>
+        <form action="/users/new" method="GET">
+            <input class="m-3 btn btn-secondary " type="submit" value="Add user" />
+        </form>
+</div>
 
-<ul>
-<h1 class="h1">USERS</h1>
-{%for user in user_list%}
-<li class="m-1 ">
-    <a class="text-decoration-none" href="/users/{{user.id}}">{{user.first_name}}</a>
-</li>
 
-{% endfor %}
-</ul>
-<form action="/users/new" method="GET">
-    <input class="m-3 btn btn-secondary " type="submit" value="Add user" />
-</form>
 
 {% endblock %}
 

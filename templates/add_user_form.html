@@ -2,26 +2,32 @@
 
 {%  block content %}
 
-<div class="card">
+<div class="container-fluid m-3">
     <h1 class="h1">Create a user</h1>
-    <form action="/users/new" method="POST">
+    <form  method="POST">
         <div class="form-group m-3">
-          <label for="first_name" class="form label">First Name</label>
-          <input class="form control w-25" type="text" id="first_name" name="first_name" placeholder="Enter a First name">
+          <label for="first_name" class="form label m-2">First Name</label>
+          <input class="form-control w-25" type="text" id="first_name" name="first_name" placeholder="Enter a First name">
          
         </div>
         <div class="form-group m-3">
-            <label for="last_name" class="form label">Last Name</label>
-            <input class="form control w-25" type="text" id="last_name" name="last_name" placeholder="Enter a Last name">
+            <label for="last_name" class="form label m-2">Last Name</label>
+            <input class="form-control w-25" type="text" id="last_name" name="last_name" placeholder="Enter a Last name">
            
         </div>
         <div class="form-group m-3">
-            <label for="image_url" class="form label">image URL</label>
-            <input class="form control w-25" type="text" id="image_url" name="image_url" placeholder="Provide an image of this user">
+            <label for="image_url" class="form label m-2">image URL</label>
+            <input class="form-control w-25" type="text" id="image_url" name="image_url" placeholder="Provide an image of this user">
             
         </div>
         <div class="bt-btn w-25 text-end">
             <button type="submit" class=" btn btn-success">Add</button>
+        </div>
+
+
+        
+             
+             
         </div>
         
     </form>

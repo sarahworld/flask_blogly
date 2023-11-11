@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from app import app
-from models import db, User
+from models import db, User, Post
 
 # Use test database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///users_test'
@@ -28,6 +28,12 @@ class UserModelTestCase(TestCase):
 
         self.user_id = test_user.id
 
+        test_post = Post(title="First Post", content="Oh, hai")
+        db.session.add(test_post)
+        db.session.commit()
+
+        self.post_id = test_post.id
+
     def tearDown(self):
         """Clean up any fouled transaction"""
 
@@ -39,7 +45,7 @@ class UserModelTestCase(TestCase):
 
     def test_user_list_page(self):
         with app.test_client() as client:
-            resp = client.get('/');
+            resp = client.get('/users');
             html= resp.get_data(as_text=True);
 
             self.assertEqual(resp.status_code,200);
@@ -52,6 +58,7 @@ class UserModelTestCase(TestCase):
 
             self.assertEqual(response.status_code,200);
             self.assertIn("Mo Adam",html);
+            
 
     def test_add_user_form_page(self):
         with app.test_client() as client:
@@ -69,3 +76,19 @@ class UserModelTestCase(TestCase):
             self.assertEqual(response.status_code,200);
             self.assertIn("Edit a user",html);
 
+    
+    def test_add_post_form_page(self):
+        with app.test_client() as client:
+            response = client.get(f'/users/{self.user_id}/posts/new');
+            html= response.get_data(as_text=True);
+
+            self.assertEqual(response.status_code,200);
+            self.assertIn("Add Post for",html);
+
+    def test_edit_post_form_page(self):
+        with app.test_client() as client:
+            response = client.get(f'/posts/{self.post_id}/edit');
+            html= response.get_data(as_text=True);
+
+            self.assertEqual(response.status_code,200);
+            self.assertIn("Edit Post",html);
