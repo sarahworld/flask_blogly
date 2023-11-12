@@ -25,6 +25,8 @@ class User(db.Model):
     image_url = db.Column(db.String(500),
                            nullable=True)
     
+  
+    
     def __repr__(self):
         return f"<User id={self.id} first_name={self.first_name} last_name={self.last_name} image_url={self.image_url}>"
     
@@ -50,3 +52,28 @@ class Post(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
 
     user = db.relationship('User', backref="posts")
+
+
+class PostTag(db.Model):
+
+    __tablename__ = 'posts_tags'
+
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), primary_key=True);
+
+    tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'), primary_key=True);
+
+class Tag(db.Model):
+
+    __tablename__ = 'tags'
+
+    id = db.Column(db.Integer,
+                   primary_key = True,
+                   autoincrement=True)
+    
+    name = db.Column(db.String(100),
+                     unique=True,
+                     nullable=False)
+    
+    posts = db.relationship('Post', secondary="posts_tags", backref='tags',  cascade="all, delete")
+    
+

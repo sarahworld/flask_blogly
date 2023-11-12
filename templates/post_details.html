@@ -10,8 +10,9 @@
     <p>{{post.content}}</p>
 
     <p class="fst-italic">By {{posted_by}}</p>
+    <p>Tags:{% for tag in tags%}<span class="badge text-bg-primary m-1">{{tag.name}}</span>{% endfor %}</p>
     <div class="btn-group mr-2" role="group">
-        <div><a href="/users/{{post.user_id}}" class=" m-1 btn btn-outline-primary" href=""> Cancel </a></div>
+        <div><a href="/users/{{post.user_id}}" class=" m-1 btn btn-outline-primary"> Cancel </a></div>
         <div >
             <form action="/posts/{{post.id}}/edit" method="GET">
                 <button class="m-1 btn btn-primary">Edit</button>
