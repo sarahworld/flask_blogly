@@ -1,4 +1,4 @@
-from models import User, Post, db
+from models import User, Post, db, Tag, PostTag
 from app import app
 
 db.drop_all()
@@ -16,4 +16,17 @@ p2 = Post(title="First One!", content="Oh, one.",user_id=2);
 p3 = Post(title="First!", content="Oh, first.",user_id=3);
 
 db.session.add_all([p1,p2,p3]);
+db.session.commit();
+
+t1 = Tag(name='Fun');
+t2 = Tag(name='Travel');
+t3 = Tag(name='Newyear');
+
+db.session.add_all([t1,t2,t3]);
+db.session.commit();
+
+pt1 = PostTag(post_id=1,tag_id=1)
+pt2 = PostTag(post_id=1,tag_id=2)
+
+db.session.add_all([pt1,pt2]);
 db.session.commit();

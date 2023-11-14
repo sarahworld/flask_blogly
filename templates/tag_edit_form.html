@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+{{page_title}}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="h1">Edit a tag</h1>
+    <form method="POST">
+        <div class="mb-2 form-group">
+            <label for="tag-name" class="form-label">Name</label>
+            <input type="text" name="tag-name" class="form-control w-25" id="tag-name" aria-describedby="tag-name" value={{tag.name}}>
+        </div>
+        <div class="bt-btn w-25 text-end">
+            <a class=" btn btn-info" href="/tags"> Cancel </a>
+            <button type="submit" class=" btn btn-success">Edit</button>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}
